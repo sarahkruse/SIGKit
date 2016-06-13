@@ -20,6 +20,8 @@ function varargout = Seismics(varargin)
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
+%testing testing changes
+
 % Edit the above text to modify the response to help Seismics
 
 % Last Modified by GUIDE v2.5 23-Feb-2016 16:34:17
