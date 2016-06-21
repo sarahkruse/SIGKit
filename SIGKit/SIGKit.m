@@ -25,27 +25,36 @@ end
 
 % --- Executes just before SIGKit is made visible.
 function SIGKit_OpeningFcn(hObject, eventdata, handles, varargin)
-
-Directory = pwd;
+cd PICS
+% Directory = pwd;
+% 
+% if isunix
+%     a = '/';
+% elseif ispc
+%     a = '\';
+% else
+%     disp('Platform not supported');
+%     return;
+% end
 
 axes(handles.UofTAxes );
-matlabImage = imread(strcat(Directory,'\PICS\UofT.png'));
+matlabImage = imread('UofT.png');
 image(matlabImage);
 axis off;
 axis image;
 
 axes(handles.MatAxes);
-matlabImage = imread(strcat(Directory , '\PICS\Mat.png'));
+matlabImage = imread('Mat.png');
 image(matlabImage);
 axis off;
 axis image;
 
 axes(handles.USFAxes);
-matlabImage = imread(strcat(Directory , '\PICS\USF.png'));
+matlabImage = imread('USF.png');
 image(matlabImage);
 axis off;
 axis image;
-
+cd ..
 
 
 axes(handles.PicsAxes); 
