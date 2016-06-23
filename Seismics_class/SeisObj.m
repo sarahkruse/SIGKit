@@ -63,10 +63,21 @@ classdef SeisObj
         function newSeisObj = SeisObj(varargin)
             Number_sources = varargin{1};
             
+            %add the Data folder to the Matlab search path so that only the data filename needs to be given 
             filepath = pwd;
-            Datapath = strcat(filepath,'/Data');
             
-            %add the Data folder to the Matlab search path
+            %check the Operating System that the code is running on
+             if isunix
+            	a = '/';
+            elseif ismac
+                a = '/';
+            elseif ispc
+                a = '\';
+            end
+            Datapath = strcat(filepath,a , 'Data');
+           
+            
+            
             path(path,Datapath);
             
             if nargin==2 && Number_sources==1;
