@@ -1,4 +1,4 @@
-% Last Modified by GUIDE v2.5 21-Jun-2016 15:07:44
+% Last Modified by GUIDE v2.5 23-Jun-2016 14:33:57
 
 
 function varargout = SIGKit(varargin)
@@ -25,6 +25,7 @@ end
 
 % --- Executes just before SIGKit is made visible.
 function SIGKit_OpeningFcn(hObject, eventdata, handles, varargin)
+
 cd PICS
 % Directory = pwd;
 % 
@@ -104,7 +105,7 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in siesmicButton.
 function siesmicButton_Callback(hObject, eventdata, handles)
-
+varargout = seismicsGUI(figure(seismicsGUI));
 
 % --- Executes on button press in ExitButton.
 function ExitButton_Callback(hObject, eventdata, handles)
