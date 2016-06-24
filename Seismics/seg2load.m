@@ -9,7 +9,7 @@ function [trace_data,header] = seg2load (filename)
 %          headr.tr contains trace data informatin
 %          
 %          Modified  by Vilhelm, Charles University, Prague in october 2002
-%          from original by Pièce PY 24/07/1996;LAMI - DeTeC Demining Technology Center;
+%          from original by PiÃ¨ce PY 24/07/1996;LAMI - DeTeC Demining Technology Center;
 %          Swiss Federal Institute of Technology (EPFL) - Lausanne, Switzerland
 
 
