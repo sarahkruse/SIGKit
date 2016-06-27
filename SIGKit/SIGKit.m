@@ -1,4 +1,4 @@
-% Last Modified by GUIDE v2.5 16-Jun-2016 13:24:31
+% Last Modified by GUIDE v2.5 23-Jun-2016 14:33:57
 
 
 function varargout = SIGKit(varargin)
@@ -26,26 +26,36 @@ end
 % --- Executes just before SIGKit is made visible.
 function SIGKit_OpeningFcn(hObject, eventdata, handles, varargin)
 
-Directory = pwd;
+cd PICS
+% Directory = pwd;
+% 
+% if isunix
+%     a = '/';
+% elseif ispc
+%     a = '\';
+% else
+%     disp('Platform not supported');
+%     return;
+% end
 
 axes(handles.UofTAxes );
-matlabImage = imread(strcat(Directory,'\PICS\UofT.png'));
+matlabImage = imread('UofT.png');
 image(matlabImage);
 axis off;
 axis image;
 
 axes(handles.MatAxes);
-matlabImage = imread(strcat(Directory , '\PICS\Mat.png'));
+matlabImage = imread('Mat.png');
 image(matlabImage);
 axis off;
 axis image;
 
 axes(handles.USFAxes);
-matlabImage = imread(strcat(Directory , '\PICS\USF.png'));
+matlabImage = imread('USF.png');
 image(matlabImage);
 axis off;
 axis image;
-
+cd ..
 
 
 axes(handles.PicsAxes); 
@@ -95,41 +105,41 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in siesmicButton.
 function siesmicButton_Callback(hObject, eventdata, handles)
+varargout = seismicsGUI(figure(seismicsGUI));
 
-
-% --- Executes on button press in ExitBotton.
-function ExitBotton_Callback(hObject, eventdata, handles)
+% --- Executes on button press in ExitButton.
+function ExitButton_Callback(hObject, eventdata, handles)
 close all;
 
 
-% --- Executes on button press in AboutBotton.
-function AboutBotton_Callback(hObject, eventdata, handles)
-varargout = AboutGUI(figure(AboutGUI))
+% --- Executes on button press in AboutButton.
+function AboutButton_Callback(hObject, eventdata, handles)
+varargout = AboutGUI(figure(AboutGUI));
 
 
-% --- Executes on button press in GprBottun.
-function GprBottun_Callback(hObject, eventdata, handles)
-
-
-
-% --- Executes on button press in MagneticsBottun.
-function MagneticsBottun_Callback(hObject, eventdata, handles)
-
-
-% --- Executes on button press in ResistivityBottun.
-function ResistivityBottun_Callback(hObject, eventdata, handles)
+% --- Executes on button press in GprButton.
+function GprButton_Callback(hObject, eventdata, handles)
 
 
 
-% --- Executes on button press in GravityBottun.
-function GravityBottun_Callback(hObject, eventdata, handles)
+% --- Executes on button press in MagneticButton.
+function MagneticButton_Callback(hObject, eventdata, handles)
+varargout = magneticGUI(figure(magneticGUI));
+
+
+% --- Executes on button press in ResistivityButton.
+function ResistivityButton_Callback(hObject, eventdata, handles)
 
 
 
-% --- Executes on button press in EmBottun.
-function EmBottun_Callback(hObject, eventdata, handles)
+% --- Executes on button press in GravityButton.
+function GravityButton_Callback(hObject, eventdata, handles)
+
+
+
+% --- Executes on button press in EmButton.
+function EmButton_Callback(hObject, eventdata, handles)
 
 
 % --- Executes on key press with focus on SIGKit and none of its controls.
 function SIGKit_KeyPressFcn(hObject, eventdata, handles)
-
