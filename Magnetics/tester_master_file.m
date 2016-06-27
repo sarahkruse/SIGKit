@@ -9,12 +9,11 @@
 %       N = number of datasets 
 %       name = dataset file name;
 
-
  clc; clear all; close all; format compact;
  X=[]; Y=[]; Fr=[]; Dr=[]; hr=[];
 for N = (1:input('Number of datasets?   '))
     name = input('Enter individual filenames for each seperate file...    ','s')
-    [hour,Fraw,Diff,W,Z]=tester_GEM_read_g(name);
+    [hour,Fraw,Diff,W,Z]=GEM_read_g(name);
     %combine datasets;
     X= vertcat(X,W);
     Y= vertcat(Y,Z);
@@ -22,8 +21,6 @@ for N = (1:input('Number of datasets?   '))
     Dr= vertcat(Dr,Diff);
     hr= vertcat(hr,[hour]);
 end 
-%sample_data/01.txt
-%
 % save dum.mat X Y Fr Dr hr
 % load dum.mat 
 
@@ -58,26 +55,46 @@ elseif Q== 'Y'
  f=griddata(X,Y,Fr,x,y');
  figure; contourf(x,y,f,16); axis image; colorbar; title(['gridded data']);
  hold on; plot(X,Y,'k.');
+elseif Q == 'N'
 end
-pause
 
-% 2. rotate map 
- [xr,yr,Xr,Yr,frot] = rotatemap(x,y,f,20,.3);
- figure; contourf(xr,yr,frot,16); axis image; colorbar; title(['rotated data']);
- hold on; plot(Xr,Yr,'k.');
+% 2. rotate map
+
+ 
+ % 2. rotate
+ R= input('rotate map to Cardinal or Geomagnetic north? [Y/N]   ','s');
+ if R == 'Y'
+     ang = input('Enter the angle of rotation counterclockwise: ');
+%should input for ang:
+%   latitude; longitude; date?; elevation?
+%   suggest common field site declanations with date
+%   ang is the angle of rotation to Cnorth or GMnorth
+%   provide common options includes fieldcamp's site
+%
+%DeepRiver, ON: 46.165714° N, 77.621793° W; 2016-06-23; 6.10° E  ± 0.34°
+%Sechlet, BC: 49.470940° N, 123.754053° W; 2016-06-23;16.66° E  ± 0.38°
+%
+     gd = input('Enter axis interval in meters: ');
+ 
+    [xr,yr,Xr,Yr,frot] = rotatemap(x,y,f,ang,gd);
+    figure; contourf(xr,yr,frot,16); axis image; colorbar; title(['rotated data']);
+    hold on; plot(Xr,Yr,'k.');
+  end
  pause
 
 % 3. upward continutation 
-%  [fuc] = upcont(x,y,f,0.95);
-%  figure; contourf(x,y,fuc,16); axis image; colorbar; title(['upward continued']);
-%  pause
-%  
+ h = input('Enter the distance to continue upward  (km?): ')
+ [fuc] = upcont(x,y,f,h);
+ figure; contourf(x,y,fuc,16); axis image; colorbar; title(['upward continued']);
+ pause
+ 
 % 4. reduction-to-the-pole 
-%  [fr2p] = r2p(x,y,f,60,5);
-%  figure; contourf(x,y,fr2p,16); axis image; colorbar; title(['reduced to pole']);
-%  pause
-%  
+ Hincla = input('Please enter inclanation of the Earth field: ')
+ azim = input('Please enter declination of the Earth field: ')
+ [fr2p] = r2p(x,y,f,Hincla,azim);
+ figure; contourf(x,y,fr2p,16); axis image; colorbar; title(['reduced to pole']);
+ pause
+
 % % 5. analytical signal
 %  [A] = analytical_signal(x,y,f,fuc,.5);
 %  figure; contourf(x,y,A,16); axis image; colorbar; title(['analytical signal']);
-%  
