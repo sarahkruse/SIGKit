@@ -35,11 +35,17 @@ function picktimes(theSeisObj)
     %also gives you the opportunity to save the movie of your picks; the
     %movie is not saved by default!!!!
 
+    if ishandle(1) && strcmp(get(1, 'type'), 'figure')
 
-    disp('pick ALL first breaks now, press enter when done')
-    [X,F] = ginput;
-    X = round(X);
-
+        disp('pick ALL first breaks now, press enter when done')
+        [X,F] = ginput;
+        X = round(X);
+    else 
+        plot(theSeisObj,'simple')
+        disp('pick ALL first breaks now, press enter when done')
+        [X,F] = ginput;
+        X = round(X);
+    end
     hold on;
     plot (X,F,'b+');
 
