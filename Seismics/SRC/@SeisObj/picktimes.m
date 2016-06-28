@@ -37,12 +37,12 @@ function picktimes(theSeisObj)
 
     if ishandle(1) && strcmp(get(1, 'type'), 'figure')
 
-        disp('pick ALL first breaks now, press enter when done')
+        msgbox('pick ALL first breaks now, press enter when done')
         [X,F] = ginput;
         X = round(X);
     else 
         plot(theSeisObj,'simple')
-        disp('pick ALL first breaks now, press enter when done')
+        msgbox('pick ALL first breaks now, press enter when done')
         [X,F] = ginput;
         X = round(X);
     end
@@ -55,7 +55,7 @@ function picktimes(theSeisObj)
 
     %create a plot of the individual waveforms for reselecting
     %first motions
-    disp('please repick first breaks')
+    msgbox('please repick first breaks')
     scrsz = get(0,'ScreenSize');
     t = theSeisObj.RecTime;
     traces = theSeisObj.W;
@@ -136,7 +136,7 @@ function picktimes(theSeisObj)
     
    
     %Give the user one last chance to verify their picks
-    disp('Please look carefully through the Picks Movie to verify your picks');
+    msgbox('Please look carefully through the Picks Movie to verify your picks');
 
     implay(M,1)
 
@@ -172,7 +172,7 @@ function picktimes(theSeisObj)
         
         figure
         plot(theSeisObj,'simple');
-        hold one
+        hold on
         plot(RecXProf, T, 'r+')
         legend('Traces','First Arrival Picks')
         
@@ -215,7 +215,7 @@ function picktimes(theSeisObj)
         %provide a summary plot of the arrivals on all 24 channels
         figure
         plot(theSeisObj,'simple');
-        hold one
+        hold on
         plot(RecXProf, T, 'r+')
         legend('Traces','First Arrival Picks')
         
