@@ -35,17 +35,17 @@ function picktimes(theSeisObj)
     %also gives you the opportunity to save the movie of your picks; the
     %movie is not saved by default!!!!
 
-    if ishandle(1) && strcmp(get(1, 'type'), 'figure')
+    %if ishandle(1) && strcmp(get(1, 'type'), 'figure')
 
-        msgbox('pick ALL first breaks now, press enter when done')
-        [X,F] = ginput;
-        X = round(X);
-    else 
+     %   msgbox('pick ALL first breaks now, press enter when done')
+      %  [X,F] = ginput;
+      %  X = round(X);
+    %else 
         plot(theSeisObj,'simple')
-        msgbox('pick ALL first breaks now, press enter when done')
+        uiwait(msgbox('pick ALL first breaks now, press enter when done'))
         [X,F] = ginput;
         X = round(X);
-    end
+    %end
     hold on;
     plot (X,F,'b+');
 
@@ -55,7 +55,7 @@ function picktimes(theSeisObj)
 
     %create a plot of the individual waveforms for reselecting
     %first motions
-    msgbox('please repick first breaks')
+    uiwait(msgbox('please repick first breaks'))
     scrsz = get(0,'ScreenSize');
     t = theSeisObj.RecTime;
     traces = theSeisObj.W;
@@ -131,12 +131,12 @@ function picktimes(theSeisObj)
 
     %plot the new picks on the original waveform figure as red
     %pluses on the original figure
-    figure(1);
-    plot(RecXProf, T, 'r+')
+    %figure(1);
+    %plot(RecXProf, T, 'r+')
     
    
     %Give the user one last chance to verify their picks
-    msgbox('Please look carefully through the Picks Movie to verify your picks');
+    uiwait(msgbox('Please look carefully through the Picks Movie to verify your picks'));
 
     implay(M,1)
 
