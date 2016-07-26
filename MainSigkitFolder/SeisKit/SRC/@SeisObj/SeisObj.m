@@ -204,7 +204,8 @@ classdef SeisObj
                         TRnorm(:,ind) = TRfilt(:,ind)/max(TRfilt(:,ind));
                     end
                     
-                    figure
+                    scrsz = get(0,'ScreenSize');
+                    figure('Position',[1 1 scrsz(3)*0.9 scrsz(4)*0.9]);
                     %flipping the polarity on the waveforms to make the
                     %first motions positive;
                     TRnorm = TRnorm*-1;
@@ -257,7 +258,8 @@ classdef SeisObj
                             end
                         end
                     end
-                    figure;
+                    scrsz = get(0,'ScreenSize');
+                    figure('Position',[1 1 scrsz(3)*0.9 scrsz(4)*0.9]);
                     
                     %flipping the polarity on the waveforms to make the
                     %first motion positive;
@@ -283,7 +285,10 @@ classdef SeisObj
                     end
                     
                 elseif strcmp(varargin,'simple');
-                    figure;
+                
+                    scrsz = get(0,'ScreenSize');
+                    figure('Position',[1 1 scrsz(3)*0.9 scrsz(4)*0.9]);
+                    
                     t = theSeisObj.RecTime;
                     x = theSeisObj.RecXProf;
                     
@@ -304,7 +309,9 @@ classdef SeisObj
                     text(-3,-75,'Offset (m)', 'FontWeight','bold');
                     
                 else strcmp(varargin,'picks')
-                    figure;
+                
+                    scrsz = get(0,'ScreenSize');
+                    figure('Position',[1 1 scrsz(3)*0.9 scrsz(4)*0.9]);
                     plot(theSeisObj.Pick_loc,theSeisObj.Pick_time,'bo')
                     xlabel('Geophone location')
                     ylabel('Pick times (ms)')
